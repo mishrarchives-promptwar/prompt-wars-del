@@ -1,0 +1,5 @@
+{
+  "name": "Gemini Tetris Architect",
+  "description": "A next-generation Tetris game featuring a robust canvas engine and a sarcastic AI coach powered by Google Gemini.",
+  "requestFramePermissions": []
+}
