@@ -174,4 +174,29 @@ export class GameEngine {
   getBoardSnapshot(): string {
     return this.grid.map(row => row.map(cell => (cell > 0 ? 'X' : '.')).join('')).join('\n');
   }
+
+  // --- Serialization for Save/Load ---
+
+  getState() {
+    return {
+      grid: this.grid,
+      activePiece: this.activePiece,
+      nextPieceType: this.nextPieceType,
+      score: this.score,
+      lines: this.lines,
+      level: this.level,
+      // We do not save status as PLAYING, usually we want to pause on load
+    };
+  }
+
+  restoreState(state: any) {
+    if (!state) return;
+    this.grid = state.grid || this.createEmptyGrid();
+    this.activePiece = state.activePiece;
+    this.nextPieceType = state.nextPieceType;
+    this.score = state.score || 0;
+    this.lines = state.lines || 0;
+    this.level = state.level || 1;
+    this.status = GameStatus.PAUSED;
+  }
 }
